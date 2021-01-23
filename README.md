@@ -3,7 +3,7 @@
 [Elastic SIEM app](https://www.elastic.co/siem) comes with many built-in detections that can be found in [this](https://github.com/elastic/detection-rules) open github repository and they all come with at least one Mitre Att&ck technique and one tactic. To read more about Mitre Att&ck framework click [here](https://attack.mitre.org/)
 
 
-It is critical to know what detection gaps you have in your environment. This visualization can help you identify your gaps a little better so that you can better allocate your time and effort to create the detections accordingly. The article is going to walk you through the process how to get this visualization built in your Kibana for better detections visibility.
+It is critical to know what detection gaps you have in your environment. This visualization can help you identify your gaps a little better so that you can better allocate your time and effort to create the detections accordingly. The article is going to walk you through the process how to get this visualization built in your Kibana for better detection coverage visibility.
 
 ### Step 1: Identify where the Elastic Signals metadata can be found in Elastic. 
   - The Elastic Signals information can be found in .kibana system index with query below:
