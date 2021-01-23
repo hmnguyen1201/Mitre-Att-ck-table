@@ -6,7 +6,7 @@
 It is critical to know what detection gaps you have in your environment. This visualization can help you identify your gaps a little better so that you can better allocate your time and effort to create the detections accordingly. The article is going to walk you through the process how to get this visualization built in your Kibana for better detection coverage visibility.
 
 ### Step 1: Identify where the Elastic Signals metadata can be found in Elastic. 
-  - The Elastic Signals information can be found in .kibana system index with query below:
+  - The Elastic Signals information can be found in **.kibana** system index with query below:
   ```
 GET .kibana/_search
 {
@@ -30,7 +30,7 @@ GET .kibana/_search
 }
 ````
 
-- A challenge with this sub-dataset being stored in .kibana index is that some of the fields we need for the visualization are not indexed/mapped. Hence step 2.
+- A challenge with this sub-dataset being stored in **.kibana** index is that some of the fields we need for the visualization are not indexed/mapped. Hence step 2.
 
 ### Step 2: Copy the Elastic signal metadata out to a different index using Elastic [Reindex API](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-reindex.html)
 
