@@ -782,7 +782,7 @@ By now you should have something that looks like this.
 
 
 
-Hope you find this article useful.
+Hope you find this useful.
 
-Ready to get started? Sign up for a [free trial of Elastic Cloud](https://www.elastic.co/cloud/), learn more about [Vega Visualization](https://www.elastic.co/webinars/vega-plugin-custom-visualizations-with-kibana), and please reach out on the [discuss forums](https://discuss.elastic.co/) if you have any questions.
+Ready to get started? Sign up for a [free trial of Elastic Cloud](https://www.elastic.co/cloud/), learn more about [Vega Visualization](https://www.elastic.co/webinars/vega-plugin-custom-visualizations-with-kibana).
 
