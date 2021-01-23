@@ -10,7 +10,7 @@ It is critical to know what detection gaps you have in your environment. This vi
   ```
 GET .kibana/_search
 {
-    "query": {
+  "query": {
     "bool": {
       "must": [],
       "filter": [
