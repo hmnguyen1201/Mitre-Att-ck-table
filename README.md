@@ -692,7 +692,7 @@ POST _reindex
           "expr": "datum.technique + ' : ' + datum.detection_count",
           "as": "full_string"
         },
-        {"type" : "formula", "expr":"'https://kibana_Link/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-24h,to:now))&_a=(columns:!(alert.params.index,alert.name,alert.params.description,alert.params.query),filters:!((%27$state%27:(store:appState),meta:(alias:!n,disabled:!f,index:acbc4480-4aa9-11eb-8bc4-e57bebeb595d,key:alert.params.threat.technique.name,negate:!f,params:(query:%27%27),type:phrase),query:(match_phrase:(alert.params.threat.technique.name:%27' + datum.technique + '%27)))),index:acbc4480-4aa9-11eb-8bc4-e57bebeb595d,interval:auto,query:(language:kuery,query:%27%27),sort:!())'","as": "thelink"}
+        {"type" : "formula", "expr":"'https://kibana.eck.hungmnguyen.us/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-24h,to:now))&_a=(columns:!(alert.params.index,alert.name,alert.params.description,alert.params.query),filters:!((%27$state%27:(store:appState),meta:(alias:!n,disabled:!f,index:acbc4480-4aa9-11eb-8bc4-e57bebeb595d,key:alert.params.threat.technique.name,negate:!f,params:(query:%27%27),type:phrase),query:(match_phrase:(alert.params.threat.technique.name:%27' + datum.technique + '%27)))),index:acbc4480-4aa9-11eb-8bc4-e57bebeb595d,interval:auto,query:(language:kuery,query:%27%27),sort:!())'","as": "thelink"}
       ]
     }
   ],
@@ -701,7 +701,7 @@ POST _reindex
       "name": "xscale",
       "type": "band",
       "domain": {"data": "table", "field": "category"},
-      "range": {"step": 250}
+      "range": {"step": 300}
     },
     {
       "name": "yscale",
@@ -718,7 +718,8 @@ POST _reindex
   ],
   "legends": [
     {
-      "fill": "color"
+      "fill": "color",
+      "orient" : "top-right"
     }
   ],
   "signals": [],
@@ -774,8 +775,7 @@ POST _reindex
     }
   ]
 }
-  ```
-
+```
 By now you should have something that looks like this. 
 
 ![mitre table](./pictures/mitre_table.png)
