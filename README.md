@@ -109,7 +109,7 @@ POST _reindex
 
 ```
 
-- Once the reindex API is executed successfully, you should have a new index called `kibana-detections` with all the fields being mapped using default Elastic dynamic mapping and it is good enough for us to proceed to step 5.
+- Once the reindex API is executed successfully, you should have a new index called **kibana-detections** with all the fields being mapped using default Elastic dynamic mapping and it is good enough for us to proceed to step 5.
 
 ### Step 5:  Create the Vega visualization
 - In Kibana --> Visualization --> Create visualization --> Custom visualization and paste the code below and enjoy
