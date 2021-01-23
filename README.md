@@ -112,7 +112,7 @@ POST _reindex
 - Once the reindex API is executed successfully, you should have a new index called **kibana-detections** with all the fields being mapped using default Elastic dynamic mapping and it is good enough for us to proceed to step 5.
 
 ### Step 5:  Create the Vega visualization
-- In Kibana --> Visualization --> Create visualization --> Custom visualization and paste the code below and enjoy
+- In Kibana --> Visualization --> Create visualization --> Custom visualization --> paste the code below
 - To make the cells are clickable and take you to your kibana saved search that display the details of the Kibana alerts, make sure to replace https://kibana_Link with your actual kibana link in the vega code. 
 
 ```
@@ -776,6 +776,13 @@ POST _reindex
 }
   ```
 
+By now you should have something that looks like this. 
+
+![mitre table](./picture/mitre_table)
+
+
+
+Hope you find this article useful.
 
 Ready to get started? Sign up for a [free trial of Elastic Cloud](https://www.elastic.co/cloud/), learn more about [Vega Visualization](https://www.elastic.co/webinars/vega-plugin-custom-visualizations-with-kibana), and please reach out on the [discuss forums](https://discuss.elastic.co/) if you have any questions.
 
