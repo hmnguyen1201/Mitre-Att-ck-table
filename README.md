@@ -63,7 +63,7 @@ POST _reindex
   }
 }
 ```
-- This API request queries the data in .kibana and send that to a new index called kibana-detections. Setting version_type to external causes Elasticsearch to preserve the version from the source, create any documents that are missing, and update any documents that have an older version in the destination than they do in the source. However, you want to automate this process so you will always have the most up to date information about your detections state. Hence step 3.
+- This API request queries the data in .kibana and send that to a new index called **kibana-detections**. Setting version_type to external causes Elasticsearch to preserve the version from the source, create any documents that are missing, and update any documents that have an older version in the destination than they do in the source. However, you want to automate this process so you will always have the most up to date information about your detections state. Hence step 3.
 
 
 ### Step 3: Automate the reindex process with watcher or any script with cronjob
