@@ -3,7 +3,7 @@
 [Elastic SIEM app](https://www.elastic.co/siem) comes with many built-in detections that can be found in [this](https://github.com/elastic/detection-rules) open github repository and they all come with at least one Mitre Att&ck technique and one tactic. To read more about Mitre Att&ck framework click [here](https://attack.mitre.org/)
 
 
-It is critical to know what detection gaps you have in your environment. This visualization can help you identify your gaps a little better so that you can better your time and effort to create the detections accordingly. Having something that shows this information visually is very helpful. This article is going to walk you through the process how to get this visualization built in your Kibana for better detections visibility.
+It is critical to know what detection gaps you have in your environment. This visualization can help you identify your gaps a little better so that you can better allocate your time and effort to create the detections accordingly. The article is going to walk you through the process how to get this visualization built in your Kibana for better detections visibility.
 
 ### Step 1: Identify where the Elastic Signals metadata can be found in Elastic. 
   - The Elastic Signals information can be found in .kibana system index with query below:
@@ -109,11 +109,11 @@ POST _reindex
 
 ```
 
-- Once the reindex API is executed, we should have a new index called `kibana-detections` with all the fields being mapped using default Elastic dynamic mapping and it is good enough for us to proceed to step 5.
+- Once the reindex API is executed successfully, you should have a new index called `kibana-detections` with all the fields being mapped using default Elastic dynamic mapping and it is good enough for us to proceed to step 5.
 
 ### Step 5:  Create the Vega visualization
 - In Kibana --> Visualization --> Create visualization --> Custom visualization and paste the code below and enjoy
-- To make the cells clickable and takes you to your kibana saved search that display the details of the Kibana alerts, make sure to replace https://kibana_Link with your actual kibana link below. 
+- To make the cells are clickable and take you to your kibana saved search that display the details of the Kibana alerts, make sure to replace https://kibana_Link with your actual kibana link in the vega code. 
 
 ```
 {
