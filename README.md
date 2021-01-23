@@ -1,4 +1,4 @@
-# Mitre Att&ck detections coverage tracking with Kibana
+# Mitre Att&ck detection coverage tracking with Kibana
 
 [Elastic SIEM app](https://www.elastic.co/siem) comes with many built-in detections that can be found in [this](https://github.com/elastic/detection-rules) open github repository and they all come with at least one Mitre Att&ck technique and one tactic. To read more about Mitre Att&ck framework click [here](https://attack.mitre.org/)
 
