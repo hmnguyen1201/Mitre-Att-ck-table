@@ -778,7 +778,7 @@ POST _reindex
 
 By now you should have something that looks like this. 
 
-![mitre table](./picture/mitre_table)
+![mitre table](./pictures/mitre_table.png)
 
 
 
