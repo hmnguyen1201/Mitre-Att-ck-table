@@ -113,6 +113,7 @@ POST _reindex
 
 ### Step 5:  Create the Vega visualization
 - In Kibana --> Visualization --> Create visualization --> Custom visualization and paste the code below and enjoy
+- To make the cells clickable and takes you to your kibana saved search that display the details of the Kibana alerts, make sure to replace https://kibana_Link with your actual kibana link below. 
 
 ```
 {
