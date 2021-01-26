@@ -1,0 +1,1337 @@
+{
+    "$schema": "https://vega.github.io/schema/vega/v5.json",
+    "description": "A basic bar chart example, with value labels shown upon mouse hover.",
+    "autosize": "pad",
+    "data": [
+        {
+            "name": "agg_value",
+            "url": {
+                "index": "kibana-detections",
+                "%context%": true,
+                "body": {
+                    "aggs": {
+                        "AllTactics": {
+                            "terms": {
+                                "field": "alert.params.threat.tactic.name.keyword",
+                                "size": 100
+                            },
+                            "aggs": {
+                                "AllTechniques": {
+                                    "terms": {
+                                        "field": "alert.params.threat.technique.name.keyword",
+                                        "size": 100
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "size": 0
+                }
+            },
+            "format": {
+                "property": "aggregations.AllTactics.buckets"
+            },
+            "transform": [
+                {
+                    "type": "formula",
+                    "expr": "datum.AllTechniques",
+                    "as": [
+                        "buckets"
+                    ]
+                },
+                {
+                    "type": "flatten",
+                    "fields": [
+                        "buckets.buckets"
+                    ],
+                    "as": [
+                        "results"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "table",
+            "values": [
+                {
+                    "category": "Reconnaissance",
+                    "technique": "Active Scanning",
+                    "position": 1
+                },
+                {
+                    "category": "Reconnaissance",
+                    "technique": "Gather Victim Host Information",
+                    "position": 2
+                },
+                {
+                    "category": "Reconnaissance",
+                    "technique": "Gather Victim Identity Information",
+                    "position": 3
+                },
+                {
+                    "category": "Reconnaissance",
+                    "technique": "Gather Victim Network Information",
+                    "position": 4
+                },
+                {
+                    "category": "Reconnaissance",
+                    "technique": "Gather Victim Org Information",
+                    "position": 5
+                },
+                {
+                    "category": "Reconnaissance",
+                    "technique": "Phishing for Information",
+                    "position": 6
+                },
+                {
+                    "category": "Reconnaissance",
+                    "technique": "Search Closed Sources",
+                    "position": 7
+                },
+                {
+                    "category": "Reconnaissance",
+                    "technique": "Search Open Technical Databases",
+                    "position": 8
+                },
+                {
+                    "category": "Reconnaissance",
+                    "technique": "Search Open Websites/Domains",
+                    "position": 9
+                },
+                {
+                    "category": "Reconnaissance",
+                    "technique": "Search Victim-Owned Websites",
+                    "position": 10
+                },
+                {
+                    "category": "Resource Development",
+                    "technique": "Acquire Infrastructure",
+                    "position": 1
+                },
+                {
+                    "category": "Resource Development",
+                    "technique": "Compromise Accounts",
+                    "position": 2
+                },
+                {
+                    "category": "Resource Development",
+                    "technique": "Compromise Infrastructure",
+                    "position": 3
+                },
+                {
+                    "category": "Resource Development",
+                    "technique": "Develop Capabilities",
+                    "position": 4
+                },
+                {
+                    "category": "Resource Development",
+                    "technique": "Establish Accounts",
+                    "position": 5
+                },
+                {
+                    "category": "Resource Development",
+                    "technique": "Obtain Capabilities",
+                    "position": 6
+                },
+                {
+                    "category": "Initial Access",
+                    "technique": "Drive-by Compromise",
+                    "position": 1
+                },
+                {
+                    "category": "Initial Access",
+                    "technique": "Exploit Public-Facing Application",
+                    "position": 2
+                },
+                {
+                    "category": "Initial Access",
+                    "technique": "External Remote Services",
+                    "position": 3
+                },
+                {
+                    "category": "Initial Access",
+                    "technique": "Hardware Additions",
+                    "position": 4
+                },
+                {
+                    "category": "Initial Access",
+                    "technique": "Phishing",
+                    "position": 5
+                },
+                {
+                    "category": "Initial Access",
+                    "technique": "Replication Through Removable Media",
+                    "position": 6
+                },
+                {
+                    "category": "Initial Access",
+                    "technique": "Supply Chain Compromise",
+                    "position": 7
+                },
+                {
+                    "category": "Initial Access",
+                    "technique": "Trusted Relationship",
+                    "position": 8
+                },
+                {
+                    "category": "Initial Access",
+                    "technique": "Valid Accounts",
+                    "position": 9
+                },
+                {
+                    "category": "Execution",
+                    "technique": "Command and Scripting Interpreter (8)",
+                    "position": 1
+                },
+                {
+                    "category": "Execution",
+                    "technique": "Exploitation for Client Execution",
+                    "position": 2
+                },
+                {
+                    "category": "Execution",
+                    "technique": "Inter-Process Communication",
+                    "position": 3
+                },
+                {
+                    "category": "Execution",
+                    "technique": "Native API",
+                    "position": 4
+                },
+                {
+                    "category": "Execution",
+                    "technique": "Scheduled Task/Job",
+                    "position": 5
+                },
+                {
+                    "category": "Execution",
+                    "technique": "Shared Modules",
+                    "position": 6
+                },
+                {
+                    "category": "Execution",
+                    "technique": "Software Deployment Tools",
+                    "position": 7
+                },
+                {
+                    "category": "Execution",
+                    "technique": "System Services",
+                    "position": 8
+                },
+                {
+                    "category": "Execution",
+                    "technique": "User Execution",
+                    "position": 9
+                },
+                {
+                    "category": "Execution",
+                    "technique": "Windows Management Instrumentation",
+                    "position": 10
+                },
+                {
+                    "category": "Persistence",
+                    "technique": "Account Manipulation",
+                    "position": 1
+                },
+                {
+                    "category": "Persistence",
+                    "technique": "BITS Jobs",
+                    "position": 2
+                },
+                {
+                    "category": "Persistence",
+                    "technique": "Boot or Logon Autostart Execution",
+                    "position": 3
+                },
+                {
+                    "category": "Persistence",
+                    "technique": "Boot or Logon Initialization Scripts",
+                    "position": 4
+                },
+                {
+                    "category": "Persistence",
+                    "technique": "Browser Extensions",
+                    "position": 5
+                },
+                {
+                    "category": "Persistence",
+                    "technique": "Compromise Client Software Binary",
+                    "position": 6
+                },
+                {
+                    "category": "Persistence",
+                    "technique": "Create Account",
+                    "position": 7
+                },
+                {
+                    "category": "Persistence",
+                    "technique": "Create or Modify System Process",
+                    "position": 8
+                },
+                {
+                    "category": "Persistence",
+                    "technique": "Event Triggered Execution",
+                    "position": 9
+                },
+                {
+                    "category": "Persistence",
+                    "technique": "External Remote Services",
+                    "position": 10
+                },
+                {
+                    "category": "Persistence",
+                    "technique": "Hijack Execution Flow",
+                    "position": 11
+                },
+                {
+                    "category": "Persistence",
+                    "technique": "Implant Container Image",
+                    "position": 12
+                },
+                {
+                    "category": "Persistence",
+                    "technique": "Office Application Startup",
+                    "position": 13
+                },
+                {
+                    "category": "Persistence",
+                    "technique": "Pre-OS Boot",
+                    "position": 14
+                },
+                {
+                    "category": "Persistence",
+                    "technique": "Scheduled Task/Job",
+                    "position": 15
+                },
+                {
+                    "category": "Persistence",
+                    "technique": "Server Software Component",
+                    "position": 16
+                },
+                {
+                    "category": "Persistence",
+                    "technique": "Traffic Signaling",
+                    "position": 17
+                },
+                {
+                    "category": "Persistence",
+                    "technique": "Valid Accounts",
+                    "position": 18
+                },
+                {
+                    "category": "Privilege Escalation",
+                    "technique": "Abuse Elevation Control Mechanism",
+                    "position": 1
+                },
+                {
+                    "category": "Privilege Escalation",
+                    "technique": "Access Token Manipulation",
+                    "position": 2
+                },
+                {
+                    "category": "Privilege Escalation",
+                    "technique": "Boot or Logon Autostart Execution",
+                    "position": 3
+                },
+                {
+                    "category": "Privilege Escalation",
+                    "technique": "Boot or Logon Initialization Scripts",
+                    "position": 4
+                },
+                {
+                    "category": "Privilege Escalation",
+                    "technique": "Create or Modify System Process",
+                    "position": 5
+                },
+                {
+                    "category": "Privilege Escalation",
+                    "technique": "Event Triggered Execution",
+                    "position": 6
+                },
+                {
+                    "category": "Privilege Escalation",
+                    "technique": "Exploitation for Privilege Escalation",
+                    "position": 7
+                },
+                {
+                    "category": "Privilege Escalation",
+                    "technique": "Group Policy Modification",
+                    "position": 8
+                },
+                {
+                    "category": "Privilege Escalation",
+                    "technique": "Hijack Execution Flow",
+                    "position": 9
+                },
+                {
+                    "category": "Privilege Escalation",
+                    "technique": "Process Injection",
+                    "position": 10
+                },
+                {
+                    "category": "Privilege Escalation",
+                    "technique": "Scheduled Task/Job",
+                    "position": 11
+                },
+                {
+                    "category": "Privilege Escalation",
+                    "technique": "Valid Accounts",
+                    "position": 12
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "XSL Script Processing",
+                    "position": 1
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Abuse Elevation Control Mechanism",
+                    "position": 2
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Access Token Manipulation",
+                    "position": 3
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "BITS Jobs",
+                    "position": 4
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Deobfuscate/Decode Files or Information",
+                    "position": 5
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Direct Volume Access",
+                    "position": 6
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Execution Guardrails",
+                    "position": 7
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Exploitation for Defense Evasion",
+                    "position": 8
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "File and Directory Permissions Modification",
+                    "position": 9
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Group Policy Modification",
+                    "position": 10
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Hide Artifacts",
+                    "position": 11
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Hijack Execution Flow (11)",
+                    "position": 12
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Impair Defenses",
+                    "position": 13
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Indicator Removal on Host",
+                    "position": 14
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Indirect Command Execution",
+                    "position": 15
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Masquerading",
+                    "position": 16
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Modify Authentication Process",
+                    "position": 17
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Modify Cloud Compute Infrastructure",
+                    "position": 18
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Modify Registry",
+                    "position": 19
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Modify System Image",
+                    "position": 20
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Network Boundary Bridging",
+                    "position": 21
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Obfuscated Files or Information",
+                    "position": 22
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Pre-OS Boot",
+                    "position": 23
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Process Injection (11)",
+                    "position": 24
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Rogue Domain Controller",
+                    "position": 25
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Rootkit",
+                    "position": 26
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Signed Binary Proxy Execution (11)",
+                    "position": 27
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Signed Script Proxy Execution",
+                    "position": 28
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Subvert Trust Controls",
+                    "position": 29
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Template Injection",
+                    "position": 30
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Traffic Signaling",
+                    "position": 31
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Trusted Developer Utilities Proxy Execution",
+                    "position": 32
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Unused/Unsupported Cloud Regions",
+                    "position": 33
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Use Alternate Authentication Material",
+                    "position": 34
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Valid Accounts",
+                    "position": 35
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Virtualization/Sandbox Evasion",
+                    "position": 36
+                },
+                {
+                    "category": "Defense Evasion",
+                    "technique": "Weaken Encryption",
+                    "position": 37
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Brute Force",
+                    "position": 1
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Credentials from Password Stores",
+                    "position": 2
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Exploitation for Credential Access",
+                    "position": 3
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Forced Authentication",
+                    "position": 4
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Input Capture",
+                    "position": 5
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Man-in-the-Middle",
+                    "position": 6
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Modify Authentication Process",
+                    "position": 7
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Network Sniffing",
+                    "position": 8
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "OS Credential Dumping",
+                    "position": 9
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Steal Application Access Token",
+                    "position": 10
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Steal or Forge Kerberos Tickets",
+                    "position": 11
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Steal Web Session Cookie",
+                    "position": 12
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Two-Factor Authentication Interception",
+                    "position": 13
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Unsecured Credentials",
+                    "position": 14
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Brute Force",
+                    "position": 1
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Credentials from Password Stores",
+                    "position": 2
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Exploitation for Credential Access",
+                    "position": 3
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Forced Authentication",
+                    "position": 4
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Input Capture",
+                    "position": 5
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Man-in-the-Middle",
+                    "position": 6
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Modify Authentication Process",
+                    "position": 7
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Network Sniffing",
+                    "position": 8
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "OS Credential Dumping",
+                    "position": 9
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Steal Application Access Token",
+                    "position": 10
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Steal or Forge Kerberos Tickets",
+                    "position": 11
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Steal Web Session Cookie",
+                    "position": 12
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Two-Factor Authentication Interception",
+                    "position": 13
+                },
+                {
+                    "category": "Credential Access",
+                    "technique": "Unsecured Credentials",
+                    "position": 14
+                },
+                {
+                    "category": "Discovery",
+                    "technique": "Account Discovery",
+                    "position": 1
+                },
+                {
+                    "category": "Discovery",
+                    "technique": "Application Window Discovery",
+                    "position": 2
+                },
+                {
+                    "category": "Discovery",
+                    "technique": "Browser Bookmark Discovery",
+                    "position": 3
+                },
+                {
+                    "category": "Discovery",
+                    "technique": "Cloud Infrastructure Discovery",
+                    "position": 4
+                },
+                {
+                    "category": "Discovery",
+                    "technique": "Cloud Service Dashboard",
+                    "position": 5
+                },
+                {
+                    "category": "Discovery",
+                    "technique": "Cloud Service Discovery",
+                    "position": 6
+                },
+                {
+                    "category": "Discovery",
+                    "technique": "Domain Trust Discovery",
+                    "position": 7
+                },
+                {
+                    "category": "Discovery",
+                    "technique": "File and Directory Discovery",
+                    "position": 8
+                },
+                {
+                    "category": "Discovery",
+                    "technique": "Network Service Scanning",
+                    "position": 9
+                },
+                {
+                    "category": "Discovery",
+                    "technique": "Network Share Discovery",
+                    "position": 10
+                },
+                {
+                    "category": "Discovery",
+                    "technique": "Network Sniffing",
+                    "position": 11
+                },
+                {
+                    "category": "Discovery",
+                    "technique": "Password Policy Discovery",
+                    "position": 12
+                },
+                {
+                    "category": "Discovery",
+                    "technique": "Peripheral Device Discovery",
+                    "position": 13
+                },
+                {
+                    "category": "Discovery",
+                    "technique": "Permission Groups Discovery",
+                    "position": 14
+                },
+                {
+                    "category": "Discovery",
+                    "technique": "Process Discovery",
+                    "position": 15
+                },
+                {
+                    "category": "Discovery",
+                    "technique": "Query Registry",
+                    "position": 16
+                },
+                {
+                    "category": "Discovery",
+                    "technique": "Remote System Discovery",
+                    "position": 17
+                },
+                {
+                    "category": "Discovery",
+                    "technique": "Software Discovery",
+                    "position": 18
+                },
+                {
+                    "category": "Discovery",
+                    "technique": "System Information Discovery",
+                    "position": 19
+                },
+                {
+                    "category": "Discovery",
+                    "technique": "System Network Configuration Discovery",
+                    "position": 20
+                },
+                {
+                    "category": "Discovery",
+                    "technique": "System Network Connections Discovery",
+                    "position": 21
+                },
+                {
+                    "category": "Discovery",
+                    "technique": "System Owner/User Discovery",
+                    "position": 22
+                },
+                {
+                    "category": "Discovery",
+                    "technique": "System Service Discovery",
+                    "position": 23
+                },
+                {
+                    "category": "Discovery",
+                    "technique": "System Time Discovery",
+                    "position": 24
+                },
+                {
+                    "category": "Discovery",
+                    "technique": "Virtualization/Sandbox Evasion",
+                    "position": 25
+                },
+                {
+                    "category": "Lateral Movement",
+                    "technique": "Exploitation of Remote Services",
+                    "position": 1
+                },
+                {
+                    "category": "Lateral Movement",
+                    "technique": "Internal Spearphishing",
+                    "position": 2
+                },
+                {
+                    "category": "Lateral Movement",
+                    "technique": "Lateral Tool Transfer",
+                    "position": 3
+                },
+                {
+                    "category": "Lateral Movement",
+                    "technique": "Remote Service Session Hijacking",
+                    "position": 4
+                },
+                {
+                    "category": "Lateral Movement",
+                    "technique": "Remote Services",
+                    "position": 5
+                },
+                {
+                    "category": "Lateral Movement",
+                    "technique": "Replication Through Removable Media",
+                    "position": 6
+                },
+                {
+                    "category": "Lateral Movement",
+                    "technique": "Software Deployment Tools",
+                    "position": 7
+                },
+                {
+                    "category": "Lateral Movement",
+                    "technique": "Taint Shared Content",
+                    "position": 8
+                },
+                {
+                    "category": "Lateral Movement",
+                    "technique": "Use Alternate Authentication Material",
+                    "position": 9
+                },
+                {
+                    "category": "Collection",
+                    "technique": "Archive Collected Data",
+                    "position": 1
+                },
+                {
+                    "category": "Collection",
+                    "technique": "Audio Capture",
+                    "position": 2
+                },
+                {
+                    "category": "Collection",
+                    "technique": "Automated Collection",
+                    "position": 3
+                },
+                {
+                    "category": "Collection",
+                    "technique": "Clipboard Data",
+                    "position": 4
+                },
+                {
+                    "category": "Collection",
+                    "technique": "Data from Cloud Storage Object",
+                    "position": 5
+                },
+                {
+                    "category": "Collection",
+                    "technique": "Data from Configuration Repository",
+                    "position": 6
+                },
+                {
+                    "category": "Collection",
+                    "technique": "Data from Information Repositories",
+                    "position": 7
+                },
+                {
+                    "category": "Collection",
+                    "technique": "Data from Local System",
+                    "position": 8
+                },
+                {
+                    "category": "Collection",
+                    "technique": "Data from Network Shared Drive",
+                    "position": 9
+                },
+                {
+                    "category": "Collection",
+                    "technique": "Data from Removable Media",
+                    "position": 10
+                },
+                {
+                    "category": "Collection",
+                    "technique": "Data Staged",
+                    "position": 11
+                },
+                {
+                    "category": "Collection",
+                    "technique": "Email Collection",
+                    "position": 12
+                },
+                {
+                    "category": "Collection",
+                    "technique": "Input Capture",
+                    "position": 13
+                },
+                {
+                    "category": "Collection",
+                    "technique": "Man in the Browser",
+                    "position": 14
+                },
+                {
+                    "category": "Collection",
+                    "technique": "Man-in-the-Middle",
+                    "position": 15
+                },
+                {
+                    "category": "Collection",
+                    "technique": "Screen Capture",
+                    "position": 16
+                },
+                {
+                    "category": "Collection",
+                    "technique": "Video Capture",
+                    "position": 17
+                },
+                {
+                    "category": "Command and Control",
+                    "technique": "Application Layer Protocol",
+                    "position": 1
+                },
+                {
+                    "category": "Command and Control",
+                    "technique": "Communication Through Removable Media",
+                    "position": 2
+                },
+                {
+                    "category": "Command and Control",
+                    "technique": "Data Encoding",
+                    "position": 3
+                },
+                {
+                    "category": "Command and Control",
+                    "technique": "Data Obfuscation",
+                    "position": 4
+                },
+                {
+                    "category": "Command and Control",
+                    "technique": "Dynamic Resolution",
+                    "position": 5
+                },
+                {
+                    "category": "Command and Control",
+                    "technique": "Encrypted Channel",
+                    "position": 6
+                },
+                {
+                    "category": "Command and Control",
+                    "technique": "Fallback Channels",
+                    "position": 7
+                },
+                {
+                    "category": "Command and Control",
+                    "technique": "Ingress Tool Transfer",
+                    "position": 8
+                },
+                {
+                    "category": "Command and Control",
+                    "technique": "Multi-Stage Channels",
+                    "position": 9
+                },
+                {
+                    "category": "Command and Control",
+                    "technique": "Non-Application Layer Protocol",
+                    "position": 10
+                },
+                {
+                    "category": "Command and Control",
+                    "technique": "Non-Standard Port",
+                    "position": 11
+                },
+                {
+                    "category": "Command and Control",
+                    "technique": "Protocol Tunneling",
+                    "position": 12
+                },
+                {
+                    "category": "Command and Control",
+                    "technique": "Proxy",
+                    "position": 13
+                },
+                {
+                    "category": "Command and Control",
+                    "technique": "Remote Access Software",
+                    "position": 14
+                },
+                {
+                    "category": "Command and Control",
+                    "technique": "Traffic Signaling",
+                    "position": 15
+                },
+                {
+                    "category": "Command and Control",
+                    "technique": "Web Service",
+                    "position": 16
+                },
+                {
+                    "category": "Exfiltration",
+                    "technique": "Automated Exfiltration",
+                    "position": 1
+                },
+                {
+                    "category": "Exfiltration",
+                    "technique": "Data Transfer Size Limits",
+                    "position": 2
+                },
+                {
+                    "category": "Exfiltration",
+                    "technique": "Exfiltration Over Alternative Protocol",
+                    "position": 3
+                },
+                {
+                    "category": "Exfiltration",
+                    "technique": "Exfiltration Over C2 Channel",
+                    "position": 4
+                },
+                {
+                    "category": "Exfiltration",
+                    "technique": "Exfiltration Over Other Network Medium",
+                    "position": 5
+                },
+                {
+                    "category": "Exfiltration",
+                    "technique": "Exfiltration Over Physical Medium",
+                    "position": 6
+                },
+                {
+                    "category": "Exfiltration",
+                    "technique": "Exfiltration Over Web Service",
+                    "position": 7
+                },
+                {
+                    "category": "Exfiltration",
+                    "technique": "Scheduled Transfer",
+                    "position": 8
+                },
+                {
+                    "category": "Exfiltration",
+                    "technique": "Transfer Data to Cloud Account",
+                    "position": 9
+                },
+                {
+                    "category": "Impact",
+                    "technique": "Account Access Removal",
+                    "position": 1
+                },
+                {
+                    "category": "Impact",
+                    "technique": "Data Destruction",
+                    "position": 2
+                },
+                {
+                    "category": "Impact",
+                    "technique": "Data Encrypted for Impact",
+                    "position": 3
+                },
+                {
+                    "category": "Impact",
+                    "technique": "Data Manipulation",
+                    "position": 4
+                },
+                {
+                    "category": "Impact",
+                    "technique": "Defacement",
+                    "position": 5
+                },
+                {
+                    "category": "Impact",
+                    "technique": "Disk Wipe",
+                    "position": 6
+                },
+                {
+                    "category": "Impact",
+                    "technique": "Endpoint Denial of Service",
+                    "position": 7
+                },
+                {
+                    "category": "Impact",
+                    "technique": "Firmware Corruption",
+                    "position": 8
+                },
+                {
+                    "category": "Impact",
+                    "technique": "Inhibit System Recovery",
+                    "position": 9
+                },
+                {
+                    "category": "Impact",
+                    "technique": "Network Denial of Service",
+                    "position": 10
+                },
+                {
+                    "category": "Impact",
+                    "technique": "Resource Hijacking",
+                    "position": 11
+                },
+                {
+                    "category": "Impact",
+                    "technique": "Service Stop",
+                    "position": 12
+                },
+                {
+                    "category": "Impact",
+                    "technique": "System Shutdown/Reboot",
+                    "position": 13
+                }
+            ],
+            "transform": [
+                {
+                    "type": "lookup",
+                    "from": "agg_value",
+                    "key": "results.key",
+                    "fields": [
+                        "technique"
+                    ],
+                    "values": [
+                        "results.doc_count",
+                        "results.key"
+                    ],
+                    "as": [
+                        "detection_count",
+                        "detection_name"
+                    ],
+                    "default": 0
+                },
+                {
+                    "type": "formula",
+                    "expr": "datum.technique + ' : ' + datum.detection_count",
+                    "as": "full_string"
+                },
+                {
+                    "type": "formula",
+                    "expr": "'https://kibana.eck.hungmnguyen.us/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-24h,to:now))&_a=(columns:!(alert.params.index,alert.name,alert.params.description,alert.params.query),filters:!((%27$state%27:(store:appState),meta:(alias:!n,disabled:!f,index:acbc4480-4aa9-11eb-8bc4-e57bebeb595d,key:alert.params.threat.technique.name,negate:!f,params:(query:%27%27),type:phrase),query:(match_phrase:(alert.params.threat.technique.name:%27' + datum.technique + '%27)))),index:acbc4480-4aa9-11eb-8bc4-e57bebeb595d,interval:auto,query:(language:kuery,query:%27%27),sort:!())'",
+                    "as": "thelink"
+                }
+            ]
+        }
+    ],
+    "scales": [
+        {
+            "name": "xscale",
+            "type": "band",
+            "domain": {
+                "data": "table",
+                "field": "category"
+            },
+            "range": {
+                "step": 300
+            }
+        },
+        {
+            "name": "yscale",
+            "type": "band",
+            "domain": {
+                "data": "table",
+                "field": "position"
+            },
+            "range": {
+                "step": 50
+            }
+        },
+        {
+            "name": "color",
+            "type": "linear",
+            "domain": [
+                0,
+                10
+            ],
+            "range": [
+                "#ffffff",
+                " #9cfb48"
+            ]
+        }
+    ],
+    "legends": [
+        {
+            "fill": "color",
+            "orient": "bottom-left",
+            "direction": "horizontal"
+        }
+    ],
+    "signals": [],
+    "axes": [
+        {
+            "orient": "top",
+            "scale": "xscale",
+            "ticks": true,
+            "grid": false,
+            "offset": {
+                "value": 50
+            },
+            "labelAlign": "right",
+            "labelColor": "blue"
+        }
+    ],
+    "marks": [
+        {
+            "type": "rect",
+            "from": {
+                "data": "table"
+            },
+            "encode": {
+                "enter": {
+                    "width": {
+                        "scale": "xscale",
+                        "band": 1
+                    },
+                    "height": {
+                        "value": -50
+                    },
+                    "x": {
+                        "scale": "xscale",
+                        "field": "category"
+                    },
+                    "y": {
+                        "scale": "yscale",
+                        "field": "position"
+                    },
+                    "strokeWidth": {
+                        "value": 2
+                    },
+                    "cornerRadius": {
+                        "value": 3.1
+                    },
+                    "fill": {
+                        "scale": "color",
+                        "field": "detection_count"
+                    },
+                    "stroke": {
+                        "value": "#652c90"
+                    },
+                    "tooltip": {
+                        "signal": "{'Detection Count': datum.detection_count}"
+                    },
+                    "href": {
+                        "field": "thelink",
+                        "type": "nominal"
+                    }
+                }
+            }
+        },
+        {
+            "type": "text",
+            "from": {
+                "data": "table"
+            },
+            "encode": {
+                "enter": {
+                    "x": {
+                        "scale": "xscale",
+                        "field": "category"
+                    },
+                    "width": {
+                        "scale": "xscale",
+                        "band": 1
+                    },
+                    "dx": {
+                        "value": 15
+                    },
+                    "dy": {
+                        "value": -15
+                    },
+                    "fontSize": {
+                        "value": 14
+                    },
+                    "fontStyle": {
+                        "value": "italic"
+                    },
+                    "fontWeight": {
+                        "value": "bold"
+                    },
+                    "tooltip": {
+                        "signal": "{'Detection Count': datum.detection_count}"
+                    },
+                    "y": {
+                        "scale": "yscale",
+                        "field": "position"
+                    },
+                    "text": {
+                        "field": "full_string"
+                    },
+                    "limit": {
+                        "value": 240
+                    },
+                    "href": {
+                        "field": "thelink",
+                        "type": "nominal"
+                    }
+                }
+            }
+        }
+    ]
+}
