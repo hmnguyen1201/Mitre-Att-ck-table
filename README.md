@@ -126,4 +126,4 @@ Hope you find this useful.
 
 Ready to get started? Sign up for a [free trial of Elastic Cloud](https://www.elastic.co/cloud/), learn more about [Vega Visualization](https://www.elastic.co/webinars/vega-plugin-custom-visualizations-with-kibana).
 
-Thanks to Aaton Nimocks for helping me along the way with my Vega questions
+Thanks to Aaron Nimocks for helping me along the way with my Vega questions
